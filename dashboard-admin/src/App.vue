@@ -4,10 +4,13 @@
     <header>
       <ul>
         <li>
-          <router-link to="/">Home</router-link>
+          <router-link exact to="/">Home</router-link>
         </li>
         <li>
-          <router-link to="/secondpage">Second</router-link>
+          <router-link exact to="/secondpage">Second</router-link>
+        </li>
+        <li>
+          <router-link exact to="/create-products">CREATE</router-link>
         </li>
       </ul>
     </header>
@@ -20,11 +23,10 @@
 
 
 <script>
-import DashBoard from "./components/Dashboard.vue";
 
 export default {
   name: "App",
-  components: { DashBoard }
+  
 }
 </script>
 
@@ -36,5 +38,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+li {
+  list-style: none;
 }
 </style>

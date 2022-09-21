@@ -1,7 +1,6 @@
 <template>
 <h1>DashBoard</h1>
     <br>
-    <button><router-link to="/create-products">CREATE</router-link></button>
     <div class="user-container" v-for="product in products" :key="product.id">
       <h3> {{ product.id }} - {{ product.name }}</h3>
       <ul>
@@ -47,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 li {
   list-style: none;

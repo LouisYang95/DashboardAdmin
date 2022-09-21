@@ -22,7 +22,9 @@
 export default {
     name: 'UserDashboard',
     computed: {
+      //create a computed property that returns the id given + store -> there productsStore
       ...mapStores(useStore),
+      // create a computed named 'products' containing the state : state.products in users.js store
       ...mapState(useStore, ['products']),
     },
 beforeMount() {

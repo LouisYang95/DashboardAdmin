@@ -13,37 +13,21 @@
         </li>
       </ul>
     </div>
-    {{users}}
 </template>
 
 <script>
-  import { useUsersStore } from '@/store/users';
+  import { useStore } from '@/store/users';
   import { mapStores, mapState} from 'pinia';
 
 export default {
     name: 'UserDashboard',
     computed: {
-      ...mapStores(useUsersStore),
-      ...mapState(useUsersStore, ['users'])
+      ...mapStores(useStore),
+      ...mapState(useStore, ['products']),
     },
-    data() {
-        return {
-            products: [],
-        }
-    },
-    async created() {
-        try {
-            const res = await fetch("http://localhost:3000/products");
-            const data = await res.json();
-            this.products = data;
-            console.log("Connect");
-            console.log(this.products);
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
-
+beforeMount() {
+    this.productsStore.getProducts();
+  },
 }
 </script>
 

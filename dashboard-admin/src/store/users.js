@@ -3,10 +3,11 @@ import { defineStore } from 'pinia';
 
 export const useStore = defineStore('products', {
     state: () => ({
-            products: [],
+            products: [], // props which will store our data from API
     }),
     getters: {},
     actions: {
+        // our function to get every products from API
         async getProducts() {
             try {
                 const res = await fetch("http://localhost:3000/products");

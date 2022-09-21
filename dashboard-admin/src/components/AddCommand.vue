@@ -1,16 +1,18 @@
 <template>
   <div id="app">
+    <!-- a brut version of the forms to try our add function -->
     <form @submit="this.mainStore.addProducts()">
-      <input placeholder="name" v-model="post.name">
+      <input placeholder="name" v-model="post.name"> <!-- v-model here is used to take the value of the input-->
       <input placeholder="title" v-model="post.price">
       <br>
       <button type="submit">Create</button>
     </form>
-    {{data}}
+    {{data}}  <!-- to see the result of the function -->
   </div>
 </template>
 
 <script>
+  // we have to import our store 
 import { useProduct } from "@/store/index";
 import { mapStores, mapState} from "pinia";
 

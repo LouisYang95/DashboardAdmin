@@ -1,15 +1,16 @@
 
 import { defineStore } from "pinia";
-
+// defining our pinia store
 export const useProduct = defineStore("main", {
-  state: () => ({
+  state: () => ({ // like a data/props in vuejs
     post : {},
     data : {},
   }),
-  getters: {},
+  getters: {}, // it's like computed property in vuejs
   
-  actions: {
+  actions: { // it's our methods in vuejs
     async addProducts() {
+      // Adding item to our json API 
       const resquest = new Request(
         "http://localhost:3000/products",
       {
@@ -17,18 +18,18 @@ export const useProduct = defineStore("main", {
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "cors",
-        cache: "default",
         body: JSON.stringify(this.post)
       }
       );
-      const res = await fetch(resquest);
+      const res = await fetch(resquest); 
       const data = await res.json();
       this.data = data;
       console.log (data);
     },
     async deleteProduct(id){
+      // deleting products thanks to id 
       await fetch(`http://localhost:3000/products/${id}`, { method: 'DELETE' });
+      window.location.reload();
       console.log('WORKED')
     }
 }

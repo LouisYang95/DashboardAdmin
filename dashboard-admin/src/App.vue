@@ -1,22 +1,30 @@
 <template>
+
   <div>
     <header>
       <ul>
-        <li><router-link to ="/">Home</router-link></li>
-        <li><router-link to="/secondpage">Second</router-link></li>
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/secondpage">Second</router-link>
+        </li>
       </ul>
     </header>
     <router-view></router-view>
+
+    <DashBoard />
+
   </div>
 </template>
 
+
 <script>
+import DashBoard from "./components/Dashboard.vue";
 
 export default {
-  name: 'App',
-  components: {
-    
-  }
+  name: "App",
+  components: { DashBoard }
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <form @submit.prevent="this.mainStore.AddProducts()">
+    <form @submit="this.mainStore.addProducts()">
       <input placeholder="name" v-model="post.name">
-      <input placeholder="title" v-model="post.title">
+      <input placeholder="title" v-model="post.price">
       <br>
       <button type="submit">Create</button>
     </form>
@@ -11,17 +11,17 @@
 </template>
 
 <script>
-import { useStore } from "@/store/index";
+import { useProduct } from "@/store/index";
 import { mapStores, mapState} from "pinia";
 
 export default {
   name: "AddCommand",
   computed: {
     //create a computed property that returns the id(given in the store) + Store -> there mainStore
-    ...mapStores(useStore),
+    ...mapStores(useProduct),
     // create 2 computed named 'data' and 'post' containing the state : state.data and state.post in index.js store
-    ...mapState(useStore, ["data"]),
-    ...mapState(useStore, ["post"]),
+    ...mapState(useProduct, ["data"]),
+    ...mapState(useProduct, ["post"]),
   },
 };
 </script>

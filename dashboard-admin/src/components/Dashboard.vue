@@ -2,9 +2,9 @@
 <h1>DashBoard</h1>
     <br>
     <button><router-link to="/create-products">CREATE</router-link></button>
-    <div class="user-container" v-for="product in products" :key="product.id">
+    <div class="user-container" v-for="product in products" :key="product.id" @dblclick="this.mainStore.deleteProduct(product.id)">
       <h3> {{ product.id }} - {{ product.name }}</h3>
-      <ul>
+      <ul >
         <li>
            {{ product.descriptions }}
         </li>
@@ -18,6 +18,7 @@
 <script>
   import { useStore } from '@/store/users';
   import { mapStores, mapState} from 'pinia';
+  import {useProduct} from '@/store/index';
 
 export default {
     name: 'UserDashboard',
@@ -26,6 +27,7 @@ export default {
       ...mapStores(useStore),
       // create a computed named 'products' containing the state : state.products in users.js store
       ...mapState(useStore, ['products']),
+      ...mapStores(useProduct),
     },
 beforeMount() {
     this.productsStore.getProducts();

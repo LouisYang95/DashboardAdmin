@@ -1,6 +1,12 @@
 <template>
-  <div id="app">
-    <div> Hello </div>
+  <div>
+    <header>
+      <ul>
+        <li><router-link to ="/">Home</router-link></li>
+        <li><router-link to="/secondpage">Second</router-link></li>
+      </ul>
+    </header>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -9,6 +15,7 @@
 export default {
   name: 'App',
   components: {
+    
   }
 }
 </script>

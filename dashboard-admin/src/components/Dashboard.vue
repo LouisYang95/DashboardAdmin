@@ -9,7 +9,7 @@
            {{ product.descriptions }}
         </li>
         <li>
-          {{ product.price }} - {{ product.stock }}
+          {{ product.price }} euro - {{ product.stock }}
         </li>
       </ul>
     </div>

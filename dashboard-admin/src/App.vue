@@ -6,6 +6,7 @@
         <li><router-link to="/secondpage">Second</router-link></li>
       </ul>
     </header>
+    <router-view></router-view>
   </div>
 </template>
 

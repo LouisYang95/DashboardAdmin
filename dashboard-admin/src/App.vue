@@ -1,22 +1,30 @@
 <template>
-  <div id="app">
-    <div> Hello </div>
-    <Dashboard />
-    
+
+  <div>
+    <header>
+      <ul>
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/secondpage">Second</router-link>
+        </li>
+      </ul>
+    </header>
+    <router-view></router-view>
+
+    <DashBoard />
+
   </div>
 </template>
 
-<script>
-import Dashboard from './components/Dashboard.vue'
 
+<script>
+import DashBoard from "./components/Dashboard.vue";
 
 export default {
-  
-  name: 'App',
-
-  components: {
-    Dashboard,
-  }
+  name: "App",
+  components: { DashBoard }
 }
 </script>
 

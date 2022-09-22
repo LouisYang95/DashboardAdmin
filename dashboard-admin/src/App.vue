@@ -10,26 +10,19 @@
           <router-link exact to="/secondpage">Second</router-link>
         </li>
         <li>
-          <router-link exact to="/create-products">CREATE</router-link>
+          <router-link exact to="/products">CREATE</router-link>
         </li>
       </ul>
     </header>
     <router-view></router-view>
-
-    <DashBoard />
-    <AddCommand />
   </div>
 </template>
 
 
 <script>
-import DashBoard from "./components/Dashboard.vue";
-import AddCommand from "./components/AddCommand.vue";
-
 
 export default {
   name: "App",
-  components: { DashBoard, AddCommand },
 }
 </script>
 

@@ -18,8 +18,8 @@ const routes = [
         component: SecondPage
     },
     {
-        naem: 'formulaire',
-        path: '/create-products',
+        naem: 'formulaireProducts',
+        path: '/products',
         component: Formulaire
     }
 ]

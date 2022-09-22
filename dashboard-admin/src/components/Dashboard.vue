@@ -2,7 +2,8 @@
 <h1>DashBoard</h1>
     <br>
     <button><router-link to="/create-products">CREATE</router-link></button>
-    <div class="user-container" v-for="product in products" :key="product.id" @dblclick="this.mainStore.deleteProduct(product.id)"> 
+    <div class="user-container" v-for="product in products" :key="product.id" @dblclick="this.mainStore.deleteProduct(product.id)" 
+    > 
       <!-- there our function to delete product is activate on double click -->
       <h3> {{ product.id }} - {{ product.name }}</h3>
       <ul >
@@ -12,8 +13,10 @@
         <li>
           {{ product.price }} euro - {{ product.stock }}
         </li>
+        <button @click="this.mainStore.selectProduct(product.id)" > ME </button>
       </ul>
     </div>
+    <button type="submit" @click="this.mainStore.editProduct(id)">Edit</button>
 </template>
 
 <script>
@@ -21,6 +24,7 @@
   import { useStore } from '@/store/users';
   import { mapStores, mapState} from 'pinia';
   import {useProduct} from '@/store/index';
+
 
 export default {
     name: 'UserDashboard',
@@ -31,6 +35,8 @@ export default {
       ...mapState(useStore, ['products']),
       // create a computed property which returns the id given + store -> there mainStore
       ...mapStores(useProduct),
+      ...mapState(useProduct, ['changed']),
+      ...mapState(useProduct, ["id"]),
     },
 beforeMount() { // beforeMount function permit the call before the component is mounted
     this.productsStore.getProducts(); // call the function getProducts in users.js store with the computed property store

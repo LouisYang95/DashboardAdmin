@@ -58,7 +58,7 @@
     input{
         border:none;
         border-bottom: 1px solid black;
-        padding-left: 40px;
+     
     }
     button {
         background-color: #555555;
@@ -70,6 +70,11 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+        margin-left: 100px;
+    }
+
+    form{
+        margin-left: 550px;
     }
 
 </style>

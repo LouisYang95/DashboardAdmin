@@ -44,7 +44,7 @@ beforeMount() { // beforeMount function permit the call before the component is 
 }
 </script>
 
-<style>
+<style scoped>
 
 li {
   list-style: none;

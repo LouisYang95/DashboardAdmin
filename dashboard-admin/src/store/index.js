@@ -24,6 +24,7 @@ export const useProduct = defineStore("main", {
       const res = await fetch(resquest);
       const data = await res.json();
       this.data = data;
+      this.post = "";
       console.log(data);
     },
     async deleteProduct(id) {

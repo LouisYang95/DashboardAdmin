@@ -1,48 +1,46 @@
 <template>
 <h1>DashBoard</h1>
     <br>
-    <div class="user-container" v-for="product in products" :key="product.id">
+    <button><router-link to="/create-products">CREATE</router-link></button>
+    <div class="user-container" v-for="product in products" :key="product.id" @dblclick="this.mainStore.deleteProduct(product.id)" 
+    > 
+      <!-- there our function to delete product is activate on double click -->
       <h3> {{ product.id }} - {{ product.name }}</h3>
-      <ul>
+      <ul >
         <li>
            {{ product.descriptions }}
         </li>
         <li>
-          {{ product.price }} - {{ product.stock }}
+          {{ product.price }} euro - {{ product.stock }}
         </li>
+        <button @click="this.mainStore.selectProduct(product.id)" > ME </button>
       </ul>
     </div>
-    {{users}}
+    <button type="submit" @click="this.mainStore.editProduct(id)">Edit</button>
 </template>
 
 <script>
-  import { useUsersStore } from '@/store/users';
+  // import our store 
+  import { useStore } from '@/store/users';
   import { mapStores, mapState} from 'pinia';
+  import {useProduct} from '@/store/index';
+
 
 export default {
     name: 'UserDashboard',
     computed: {
-      ...mapStores(useUsersStore),
-      ...mapState(useUsersStore, ['users'])
+      //create a computed property that returns the id given + store -> there productsStore
+      ...mapStores(useStore),
+      // create a computed named 'products' containing the state : state.products in users.js store
+      ...mapState(useStore, ['products']),
+      // create a computed property which returns the id given + store -> there mainStore
+      ...mapStores(useProduct),
+      ...mapState(useProduct, ['changed']),
+      ...mapState(useProduct, ["id"]),
     },
-    data() {
-        return {
-            products: [],
-        }
-    },
-    async created() {
-        try {
-            const res = await fetch("http://localhost:3000/products");
-            const data = await res.json();
-            this.products = data;
-            console.log("Connect");
-            console.log(this.products);
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
-
+beforeMount() { // beforeMount function permit the call before the component is mounted
+    this.productsStore.getProducts(); // call the function getProducts in users.js store with the computed property store
+  },
 }
 </script>
 

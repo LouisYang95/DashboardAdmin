@@ -17,16 +17,19 @@
     <router-view></router-view>
 
     <DashBoard />
-
+    <AddCommand />
   </div>
 </template>
 
 
 <script>
+import DashBoard from "./components/Dashboard.vue";
+import AddCommand from "./components/AddCommand.vue";
+
 
 export default {
   name: "App",
-  
+  components: { DashBoard, AddCommand },
 }
 </script>
 

@@ -1,7 +1,6 @@
 <template>
   <h1>DashBoard</h1>
   <br />
-  <button><router-link to="/create-products">CREATE</router-link></button>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -60,7 +59,7 @@ export default {
 
 
 <style scoped>
-
+  @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap');
 
 li {
   list-style: none;
@@ -84,5 +83,10 @@ ul {
   width: 300px;
   padding: 100px;
   margin: 20px;
+}
+
+h1 {
+  font-family: 'Reem Kufi Ink', sans-serif;
+
 }
 </style>

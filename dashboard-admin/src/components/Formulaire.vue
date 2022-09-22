@@ -1,4 +1,5 @@
 <template>
+    <br><br>
     <div>
         <form @submit.prevent="this.mainStore.addProducts()">
             <div class="form-group">
@@ -40,7 +41,6 @@
     ...mapState(useProduct, ["post"]),
     ...mapState(useProduct, ["changed"]),
     ...mapState(useProduct, ['id'])
-
         }
     } 
 </script>
@@ -58,8 +58,8 @@
     input{
         border:none;
         border-bottom: 1px solid black;
-     
     }
+    
     button {
         background-color: #555555;
         cursor: pointer; 
@@ -71,6 +71,7 @@
         display: inline-block;
         font-size: 16px;
         margin-left: 100px;
+        border-radius: 30px;
     }
 
     form{

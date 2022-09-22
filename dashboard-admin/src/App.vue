@@ -1,32 +1,39 @@
 <template>
 
-  <div>
+  <div class="home">
     <header>
       <ul>
         <li>
-          <router-link exact to="/">Home</router-link>
+          <router-link exact to="/" class="link">Home</router-link>
         </li>
         <li>
-          <router-link exact to="/secondpage">Second</router-link>
+          <router-link exact to="/secondpage" class="link">Second</router-link>
         </li>
         <li>
-          <router-link exact to="/products">CREATE</router-link>
+          <router-link exact to="/products" class="link">CREATE</router-link>
         </li>
       </ul>
     </header>
-    <router-view></router-view>
+    <router-view>
+    </router-view>
   </div>
 </template>
 
 
 <script>
 
+
 export default {
-  name: "App",
+    name: "App",
+    components: {
+    },
 }
 </script>
 
 <style scoped>
+.home {
+  text-align: center;
+}
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -37,5 +44,13 @@ export default {
   }
   li {
     list-style: none;
+  }
+
+  .link{
+    text-decoration: none;
+    color: black;
+  }
+  .link:hover{
+    color: rgb(229, 146, 146);
   }
 </style>

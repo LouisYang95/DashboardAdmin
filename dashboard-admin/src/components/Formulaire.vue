@@ -1,25 +1,29 @@
 <template>
     <div>
-    <form @submit.prevent="this.mainStore.addProducts()">
-        <div class="form-group">
-            <label for="formGroupExampleInput">Nom</label>
-            <input type="text" class="form-control" id="nom" placeholder="Nom" v-model="post.name">
-        </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Description</label>
-            <input type="text" class="form-control" id="description" placeholder="Description" v-model="post.description">
-        </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Prix</label>
-            <input type="text" class="form-control" id="prix" placeholder="Prix" v-model="post.price">
-        </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Quantité</label>
-            <input type="text" class="form-control" id="quantite" placeholder="Quantité" v-model="post.stock">
-        </div>
-        <button type="submit" >Create</button>
-    </form>
-</div>
+        <form @submit.prevent="this.mainStore.addProducts()">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Nom :</label>
+                <br>
+                <input type="text" class="form-control" id="nom" v-model="post.name">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Description :</label>
+                <br>
+                <input type="text" class="form-control" id="description" v-model="post.description">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Prix :</label>
+                <br>
+                <input type="text" class="form-control" id="prix" v-model="post.price">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Quantité :</label>
+                <br>
+                <input type="text" class="form-control" id="quantite" v-model="post.stock">
+            </div>
+            <button type="submit" >Create</button>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -37,19 +41,35 @@
     ...mapState(useProduct, ["changed"]),
     ...mapState(useProduct, ['id'])
 
-  }
+        }
     } 
 </script>
 
 <style scoped>
     .form-group {
-        columns: 0;
         height: 100px;
     }
 
     .form-control {
         width: 20rem;
         height: 2rem;
+    }
+
+    input{
+        border:none;
+        border-bottom: 1px solid black;
+        padding-left: 40px;
+    }
+    button {
+        background-color: #555555;
+        cursor: pointer; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
     }
 
 </style>

@@ -1,7 +1,9 @@
 <template>
   <h1>DashBoard</h1>
   <br />
+
   <!-- board -->
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -79,6 +81,9 @@ export default {
 </script>
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap');
+
+
 li {
   list-style: none;
   text-align: left;
@@ -101,5 +106,10 @@ ul {
   width: 300px;
   padding: 100px;
   margin: 20px;
+}
+
+h1 {
+  font-family: 'Reem Kufi Ink', sans-serif;
+
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <form @submit.prevent="this.mainStore.addProducts()">
       <div class="form-group">
@@ -39,6 +40,7 @@
       <button type="submit">Edit</button>
     </form>
   </div>
+
 </template>
 
 <script>
@@ -56,6 +58,7 @@ export default {
     ...mapState(useProduct, ["id"]),
   },
 };
+
 </script>
 
 <style scoped>
@@ -63,10 +66,12 @@ export default {
   margin: 1em;
 }
 
+
 .form-control {
   width: 20rem;
   height: 2rem;
 }
+
 
 input {
   border: none;

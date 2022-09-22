@@ -10,7 +10,7 @@
           <router-link exact to="/secondpage">Second</router-link>
         </li>
         <li>
-          <router-link exact to="/products">CREATE</router-link>
+          <router-link exact to="/products/add">CREATE</router-link>
         </li>
       </ul>
     </header>

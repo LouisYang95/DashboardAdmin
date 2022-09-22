@@ -1,15 +1,15 @@
-import Dashboard from '../components/Dashboard.vue'
+import ProductsBoard from '../components/ProductsBoard.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import SecondPage from '../pages/SecondPage.vue'
-import Formulaire from '../components/Formulaire.vue'
+import FormAddProduct from '../components/FormAddProduct.vue'
 
 // declaration des différentes routes
 const routes = [
     {
         name: 'home',
         path: '/',
-        component: Dashboard
+        component: ProductsBoard
 
     },
     {
@@ -19,8 +19,8 @@ const routes = [
     },
     {
         naem: 'formulaireProducts',
-        path: '/products',
-        component: Formulaire
+        path: '/products/add',
+        component: FormAddProduct
     }
 ]
 

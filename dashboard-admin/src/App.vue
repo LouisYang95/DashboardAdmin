@@ -1,5 +1,6 @@
 <template>
 
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <router-link exact to="/"><strong>Home</strong></router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,13 +30,15 @@
 
 <script>
 
+
 export default {
-  name: "App",
+    name: "App",
+    components: {
+    },
 }
 </script>
 
 <style scoped>
-
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -48,6 +51,7 @@ export default {
   li {
     list-style: none;
   }
+
 
   router-view {
     text-decoration: none;

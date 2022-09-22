@@ -36,13 +36,13 @@ export const useProduct = defineStore("main", {
     async editProduct(id) {
       // edit product by selected product
       console.log(this.post);
-      await fetch(`http://localhost:3000/products/${id}`,{
+      await fetch(`http://localhost:3000/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(this.post),
-      })
+      });
       console.log("PUT");
     },
     async selectProduct(id) {

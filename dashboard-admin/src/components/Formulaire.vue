@@ -37,7 +37,7 @@
           v-model="post.stock"
         />
       </div>
-      <button type="submit">Edit</button>
+      <button type="submit" class="btn btn-outline-primary">Edit</button>
     </form>
   </div>
 

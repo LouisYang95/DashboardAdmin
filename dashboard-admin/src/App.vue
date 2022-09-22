@@ -4,13 +4,19 @@
     <header>
       <ul>
         <li>
-          <router-link exact to="/">Home</router-link>
+          <router-link exact to="/">Product Board</router-link>
         </li>
         <li>
-          <router-link exact to="/secondpage">Second</router-link>
+          <router-link exact to="/commands">Commands Board</router-link>
         </li>
         <li>
-          <router-link exact to="/products/add">CREATE</router-link>
+          <router-link exact to="/products/add">Add a Product</router-link>
+        </li>
+        <li>
+          <router-link exact to="/clients">Client Board</router-link>
+        </li>
+        <li>
+          <router-link exact to="/categories">Categories</router-link>
         </li>
       </ul>
     </header>

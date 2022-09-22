@@ -1,51 +1,64 @@
 <template>
-<h1>DashBoard</h1>
-    <br>
-    <button><router-link to="/create-products">CREATE</router-link></button>
-    <div class="user-container" v-for="product in products" :key="product.id" @dblclick="this.mainStore.deleteProduct(product.id)" 
-    > 
+  <h1>DashBoard</h1>
+  <br />
+  <button><router-link to="/create-products">CREATE</router-link></button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody
+      v-for="product in products"
+      :key="product.id"
+      @dblclick="this.mainStore.deleteProduct(product.id)"
+    >
       <!-- there our function to delete product is activate on double click -->
-      <h3> {{ product.id }} - {{ product.name }}</h3>
-      <ul >
-        <li>
-           {{ product.descriptions }}
-        </li>
-        <li>
-          {{ product.price }} euro - {{ product.stock }}
-        </li>
-        <button @click="this.mainStore.selectProduct(product.id)" > ME </button>
-      </ul>
-    </div>
-    <button type="submit" @click="this.mainStore.editProduct(id)">Edit</button>
+      <tr>
+        <th scope="row">
+          {{ product.id }}
+        </th>
+        <td>{{ product.name }}</td>
+        <td>
+          {{ product.descriptions }}
+        </td>
+        <td>{{ product.price }} euro - {{ product.stock }}</td>
+        <button @click="this.mainStore.selectProduct(product.id)">ME</button>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" @click="this.mainStore.editProduct(id)">Edit</button>
 </template>
 
 <script>
-  // import our store 
-  import { useStore } from '@/store/users';
-  import { mapStores, mapState} from 'pinia';
-  import {useProduct} from '@/store/index';
-
+// import our store
+import { useStore } from "@/store/users";
+import { mapStores, mapState } from "pinia";
+import { useProduct } from "@/store/index";
 
 export default {
-    name: 'UserDashboard',
-    computed: {
-      //create a computed property that returns the id given + store -> there productsStore
-      ...mapStores(useStore),
-      // create a computed named 'products' containing the state : state.products in users.js store
-      ...mapState(useStore, ['products']),
-      // create a computed property which returns the id given + store -> there mainStore
-      ...mapStores(useProduct),
-      ...mapState(useProduct, ['changed']),
-      ...mapState(useProduct, ["id"]),
-    },
-beforeMount() { // beforeMount function permit the call before the component is mounted
+  name: "UserDashboard",
+  computed: {
+    //create a computed property that returns the id given + store -> there productsStore
+    ...mapStores(useStore),
+    // create a computed named 'products' containing the state : state.products in users.js store
+    ...mapState(useStore, ["products"]),
+    // create a computed property which returns the id given + store -> there mainStore
+    ...mapStores(useProduct),
+    ...mapState(useProduct, ["changed"]),
+    ...mapState(useProduct, ["id"]),
+  },
+  beforeMount() {
+    // beforeMount function permit the call before the component is mounted
     this.productsStore.getProducts(); // call the function getProducts in users.js store with the computed property store
   },
-}
+};
 </script>
 
 <style>
-
 li {
   list-style: none;
   text-align: left;
@@ -57,18 +70,11 @@ ul {
   padding: 0;
 }
 
-.user-container {
-  background-color: lightgrey;
-  border-radius: 30px;
-  width: 300px;
-  padding: 100px;
-  margin: 20px;
+.table.table-striped{
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
 }
-
-.user-container h3 {
-  margin-top: -60px;
-}
-
 .product-container {
   background-color: lightgrey;
   border-radius: 30px;
@@ -76,5 +82,4 @@ ul {
   padding: 100px;
   margin: 20px;
 }
-
 </style>

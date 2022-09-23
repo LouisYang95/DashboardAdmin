@@ -8,7 +8,7 @@
         aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
-          <slot name="header"> Edit le produit </slot>
+          <slot name="header"> Edit client info</slot>
           <button
             type="button"
             class="btn-close"
@@ -22,49 +22,49 @@
         <section class="modal-body" id="modalDescription">
           <form>
             <div class="form-group">
-              <label for="formGroupExampleInput">Nom :</label>
+              <label for="formGroupExampleInput">Firstname :</label>
               <br />
               <input
                 type="text"
                 class="form-control"
                 id="nom"
-                v-model="post.name"
+                v-model="postClient.firstname"
               />
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Description :</label>
+              <label for="formGroupExampleInput2">Lastname :</label>
               <br />
               <input
                 type="text"
                 class="form-control"
                 id="description"
-                v-model="post.description"
+                v-model="postClient.lastname"
               />
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Prix :</label>
+              <label for="formGroupExampleInput2">Email :</label>
               <br />
               <input
                 type="text"
                 class="form-control"
                 id="prix"
-                v-model="post.price"
+                v-model="postClient.email"
               />
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Quantité :</label>
+              <label for="formGroupExampleInput2">Orders :</label>
               <br />
               <input
                 type="text"
                 class="form-control"
                 id="quantite"
-                v-model="post.stock"
+                v-model="postClient.orders"
               />
             </div>
             <button
               type="submit"
               class="btn btn-outline-primary"
-              @click="this.mainStore.editProduct(id)"
+              @click="this.clientStore.editClient(idClient)"
             >
               Edit
             </button>
@@ -88,22 +88,23 @@
 
 <script>
 import { mapStores, mapState } from "pinia";
-import { useProduct } from "@/store/index";
+import { useCommand } from "@/store/useCommand";
 export default {
-  name: "useModal",
-  data(){
-    return{
-    }
+  name: "useCommandModal",
+  data() {
+    return {};
   },
   methods: {
     close() {
+      //make this.post none
+      this.commandStore.postCommand = "";
       this.$emit("close");
     },
   },
   computed: {
-    ...mapStores(useProduct),
-    ...mapState(useProduct, ["post"]),
-    ...mapState(useProduct, ["id"]),
+    ...mapStores(useCommand),
+    ...mapState(useCommand, ["postCommand"]),
+    ...mapState(useCommand, ["idCommand"]),
   },
 };
 </script>

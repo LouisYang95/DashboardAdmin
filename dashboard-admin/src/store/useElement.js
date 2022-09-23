@@ -1,20 +1,20 @@
 import { defineStore } from 'pinia';
 // import users from "C:/Users/tropt/Documents/GitHub/DashboardAdmin/mock-api-dashboard/db.json"
 
-export const useStore = defineStore('products', {
+export const useStore = defineStore('elements', {
     state: () => ({
-            products: [], // props which will store our data from API
+            elements: [], // props which will store our data from API
     }),
     getters: {},
     actions: {
-        // our function to get every products from API
-        async getProducts() {
+        // our function to get every elements from API
+        async getElement(index) {
             try {
-                const res = await fetch("http://localhost:3000/products");
+                const res = await fetch(`http://localhost:3000/${index}`);
                 const data = await res.json();
-                this.products = data;
+                this.elements = data;
                 console.log("Connect");
-                console.log(this.products);
+                console.log(this.elements);
             }
             catch (e) {
                 console.error(e);

@@ -5,16 +5,15 @@ export const useProduct = defineStore("main", {
     // like a data/props in vuejs
     post: {},
     data: {},
-    changed: {},
     id: {},
   }),
   getters: {}, // it's like computed property in vuejs
 
   actions: {
     // it's our methods in vuejs
-    async addProducts() {
+    async addProducts(index) {
       // Adding item to our json API
-      const resquest = new Request("http://localhost:3000/products", {
+      const resquest = new Request(`http://localhost:3000/${index}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,9 +26,9 @@ export const useProduct = defineStore("main", {
       this.post = "";
       console.log(data);
     },
-    async deleteProduct(id) {
+    async delete(index, id) {
       // deleting products thanks to id
-      await fetch(`http://localhost:3000/products/${id}`, { method: "DELETE" });
+      await fetch(`http://localhost:3000/${index}/${id}`, { method: "DELETE" });
       window.location.reload();
       console.log("WORKED");
     },

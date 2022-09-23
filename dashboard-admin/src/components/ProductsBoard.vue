@@ -1,5 +1,4 @@
 <template>
-
   <br />
   <!-- board -->
 
@@ -29,7 +28,14 @@
           {{ product.description }}
         </td>
         <td>{{ product.price }} euro</td>
-        <td>{{ product.stock }} / {{ product.stock }}</td>
+
+        <td>
+          <p v-if="product.stock === 10">Quantité maximale {{product.stock}}</p>
+          <p v-else-if="product.stock >= 5 ">
+            presque stock {{product.stock}}
+          </p>
+          <p v-else>Hors stock {{product.stock}}</p>
+        </td>
         <td>
           <button
             class="btn btn-outline-primary"
@@ -40,10 +46,14 @@
           >
             Edit
           </button>
-          <UseModal
+          <UseProductModal
             v-show="isModalVisible"
             @close="this.modalStore.showModal()"
           />
+        </td>
+        <td>
+          <input type="checkbox" @click="this.mainStore.selectProduct(product.id)"/>
+          <button @click="this.mainStore.addToCart(product.id)" class="btn btn-outline-secondary">add to cart</button>
         </td>
       </tr>
     </tbody>
@@ -55,7 +65,7 @@
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
 import { useProduct } from "@/store/index";
-import UseModal from "./Modal.vue";
+import UseProductModal from "./modalComponent/ProductModal.vue";
 import { useModal } from "@/store/useModal.js";
 
 export default {
@@ -65,8 +75,9 @@ export default {
       element: "products",
     };
   },
-  components: { UseModal },
-  methods: {},
+  components: { UseProductModal },
+  methods: {
+  },
   beforeMount() {
     // beforeMount function permit the call before the component is mounted
     this.elementsStore.getElement(this.element); // call the function getProducts in users.js store with the computed property store

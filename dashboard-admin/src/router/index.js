@@ -2,7 +2,7 @@ import ProductsBoard from '../components/ProductsBoard.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import CommandsBoard from '../components/CommandsBoard.vue'
-import FormAddProduct from '../components/FormAddProduct.vue'
+import FormAddProduct from '../components/Forms/FormAddProduct.vue'
 import ClientBoard from '../components/ClientBoard.vue'
 import CategoriesBoard from '../components/CategoriesBoard.vue'
 

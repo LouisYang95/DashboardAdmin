@@ -6,6 +6,7 @@ export const useProduct = defineStore("main", {
     post: {},
     data: {},
     id: {},
+    stock: {},
   }),
   getters: {}, // it's like computed property in vuejs
 
@@ -45,13 +46,25 @@ export const useProduct = defineStore("main", {
       console.log("PUT");
     },
     async selectProduct(id) {
+      this.post= {};
       await fetch(`http://localhost:3000/products/${id}`, { method: "GET" })
         .then((res) => res.json())
         .then((data) => {
           this.post = data;
           this.id = data.id;
-          console.log(this.id);
+          this.stock = data.stock;
+          console.log(this.stock); 
         });
     },
+    async addToCart(id) {
+      this.stock = this.stock - 1;
+      console.log(this.stock);
+      await fetch(`http://localhost:3000/products/${id}`, { method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+       },
+       body: JSON.stringify(this.stock),
+       })
+    }
   },
 });

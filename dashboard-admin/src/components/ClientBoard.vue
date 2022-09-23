@@ -1,12 +1,12 @@
 <template>
 
-    <h1>Clients</h1>
   <br>
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
         <th scope="col">Email</th>
         <th scope="col">Orders</th>
       </tr>
@@ -21,7 +21,8 @@
         <th scope="row">
           {{ client.id }}
         </th>
-        <td>{{ client.firstname }} {{client.lastname}}</td>
+        <td>{{ client.firstname }} </td>
+        <td>{{ client.lastname }}</td>
         <td>
           {{ client.email }}
         </td>
@@ -33,12 +34,12 @@
             class="btn btn-outline-primary"
             @click="
               this.modalStore.showModal();
-              this.mainStore.selectProduct(client.id);
+              this.clientStore.selectClient(client.id);
             "
           >
             Edit
           </button>
-          <UseModal
+          <UseClientModal
             v-show="isModalVisible"
             @close="this.modalStore.showModal()"
           />
@@ -51,13 +52,13 @@
 <script>
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
-import { useProduct } from "@/store/index";
-import UseModal from "./Modal.vue";
+import { useClient } from "@/store/useClient";
+import UseClientModal from "./modalComponent/ClientModal.vue";
 import { useModal } from "@/store/useModal.js";
 export default {
   name: "ClientDashboard",
   components: {
-    UseModal,
+    UseClientModal,
   },
   data() {
     return {
@@ -74,11 +75,11 @@ export default {
     // create a computed named 'products' containing the state : state.products in users.js store
     ...mapState(useStore, ["elements"]),
     // create a computed property which returns the id given + store -> there mainStore
-    ...mapStores(useProduct),
-    ...mapState(useProduct, ["changed"]),
-    ...mapState(useProduct, ["id"]),
+    ...mapStores(useClient),
+    ...mapState(useClient, ["postClient"]),
+    ...mapState(useClient, ["idClient"]),
     // create a computed property which returns the id given + store -> there modalStore
-    ...mapStores(useModal),
+    ...mapStores(useModal), 
     // create a computed named 'isModalVisible' containing the state : state.isModalVisible in users.js store
     ...mapState(useModal, ["isModalVisible"]),
   },

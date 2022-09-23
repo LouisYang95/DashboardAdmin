@@ -1,5 +1,4 @@
 <template>
-  <h1>Categories</h1>
   <br />
 
   <table class="table table-striped">
@@ -29,12 +28,13 @@
             class="btn btn-outline-primary"
             @click="
               this.modalStore.showModal();
-              this.mainStore.selectProduct(category.id);
+              this.categoryStore.selectCategory(category.id);
             "
           >
             Edit
           </button>
-          <UseModal
+          <UseCategoryModal
+            element="post"
             v-show="isModalVisible"
             @close="this.modalStore.showModal()"
           />
@@ -47,13 +47,14 @@
 <script>
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
-import { useProduct } from "@/store/index";
-import UseModal from "./Modal.vue";
+
 import { useModal } from "@/store/useModal.js";
+import { useCategory } from "@/store/useCategories.js";
+import UseCategoryModal from './modalComponent/CategoryModal.vue'
 export default {
   name: "CategoriesDashboard",
   components: {
-    UseModal,
+    UseCategoryModal,
   },
   data() {
     return {
@@ -69,13 +70,14 @@ export default {
     ...mapStores(useStore),
     // create a computed named 'products' containing the state : state.products in users.js store
     ...mapState(useStore, ["elements"]),
-    // create a computed property which returns the id given + store -> there mainStore
-    ...mapStores(useProduct),
-    ...mapState(useProduct, ["id"]),
+
     // create a computed property which returns the id given + store -> there modalStore
     ...mapStores(useModal),
     // create a computed named 'isModalVisible' containing the state : state.isModalVisible in users.js store
     ...mapState(useModal, ["isModalVisible"]),
+
+    ...mapStores(useCategory),
+    ...mapState(useCategory, ["idCategory"]),
   },
 };
 </script>
@@ -93,7 +95,7 @@ export default {
   padding: 100px;
   margin: 20px;
 }
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 </style>

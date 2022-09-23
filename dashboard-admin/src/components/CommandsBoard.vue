@@ -1,5 +1,4 @@
 <template>
-  <h1>Categories</h1>
   <br />
 
   <table class="table table-striped">
@@ -7,7 +6,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Product</th>
-        <th scope="col">Variant</th>
+        <th scope="col">Status</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total Price</th>
         <th scope="col">Client</th>
@@ -27,7 +26,7 @@
           {{ order.products[0].product_id }}
         </td>
         <td>
-          {{ order.products[0].variant }}
+          {{ order.status }}
         </td>
         <td>
           {{ order.products[0].quantity }}
@@ -43,12 +42,12 @@
             class="btn btn-outline-primary"
             @click="
               this.modalStore.showModal();
-              this.mainStore.selectProduct(order.id);
+              this.commandStore.selectCommand(order.id);
             "
           >
             Edit
           </button>
-          <UseModal
+          <UseCommandModal
             v-show="isModalVisible"
             @close="this.modalStore.showModal()"
           />
@@ -61,13 +60,13 @@
 <script>
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
-import { useProduct } from "@/store/index";
-import UseModal from "./Modal.vue";
+import { useCommand } from "@/store/useCommand";
+import UseCommandModal from "./modalComponent/CommandModal.vue";
 import { useModal } from "@/store/useModal.js";
 export default {
   name: "OrdersBoard",
   components: {
-    UseModal,
+    UseCommandModal,
   },
   data() {
     return {
@@ -84,8 +83,8 @@ export default {
     // create a computed named 'products' containing the state : state.products in users.js store
     ...mapState(useStore, ["elements"]),
     // create a computed property which returns the id given + store -> there mainStore
-    ...mapStores(useProduct),
-    ...mapState(useProduct, ["id"]),
+    ...mapStores(useCommand, ["postCommand"]),
+    ...mapState(useCommand, ["idCommand"]),
     // create a computed property which returns the id given + store -> there modalStore
     ...mapStores(useModal),
     // create a computed named 'isModalVisible' containing the state : state.isModalVisible in users.js store

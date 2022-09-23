@@ -38,7 +38,7 @@
                 type="text"
                 class="form-control"
                 id="description"
-                v-model="post.descriptions"
+                v-model="post.description"
               />
             </div>
             <div class="form-group">
@@ -91,6 +91,10 @@ import { mapStores, mapState } from "pinia";
 import { useProduct } from "@/store/index";
 export default {
   name: "useModal",
+  data(){
+    return{
+    }
+  },
   methods: {
     close() {
       this.$emit("close");
@@ -98,9 +102,7 @@ export default {
   },
   computed: {
     ...mapStores(useProduct),
-    ...mapState(useProduct, ["data"]),
     ...mapState(useProduct, ["post"]),
-    ...mapState(useProduct, ["changed"]),
     ...mapState(useProduct, ["id"]),
   },
 };

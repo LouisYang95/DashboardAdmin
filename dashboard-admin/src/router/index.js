@@ -20,7 +20,7 @@ const routes = [
         component: CommandsBoard
     },
     {
-        naem: 'formulaireProducts',
+        name: 'formulaireProducts',
         path: '/products/add',
         component: FormAddProduct
     },

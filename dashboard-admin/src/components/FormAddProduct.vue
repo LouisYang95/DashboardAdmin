@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <form @submit.prevent="this.mainStore.addProducts()">
+    <form @submit.prevent="this.mainStore.addProducts(element)">
       <div class="form-group">
         <label for="formGroupExampleInput">Nom :</label>
         <br />
@@ -37,7 +37,7 @@
           v-model="post.stock"
         />
       </div>
-      <button type="submit" class="btn btn-outline-primary">Edit</button>
+      <button type="submit" class="btn btn-outline-primary">Add</button>
     </form>
   </div>
 
@@ -48,13 +48,17 @@ import { useProduct } from "@/store/index";
 import { mapStores, mapState } from "pinia";
 export default {
   name: "taskFormulaire",
+  data(){
+    return{
+      element : 'products',
+    }
+  },
   computed: {
     //create a computed property that returns the id(given in the store) + Store -> there mainStore
     ...mapStores(useProduct),
     // create 2 computed named 'data' and 'post' containing the state : state.data and state.post in index.js store
     ...mapState(useProduct, ["data"]),
     ...mapState(useProduct, ["post"]),
-    ...mapState(useProduct, ["changed"]),
     ...mapState(useProduct, ["id"]),
   },
 };
@@ -69,7 +73,6 @@ export default {
 
 .form-control {
   width: 20rem;
-  height: 2rem;
 }
 
 
@@ -87,12 +90,12 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-left: 100px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(228, 225, 225);;
 }
 </style>

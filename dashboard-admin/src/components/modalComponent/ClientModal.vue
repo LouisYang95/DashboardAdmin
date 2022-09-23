@@ -88,23 +88,23 @@
 
 <script>
 import { mapStores, mapState } from "pinia";
-import { useCommand } from "@/store/useCommand";
+import { useClient } from "@/store/useClient";
 export default {
-  name: "useCommandModal",
+  name: "useClientModal",
   data() {
     return {};
   },
   methods: {
     close() {
       //make this.post none
-      this.commandStore.postCommand = "";
+      this.clientStore.postClient = "";
       this.$emit("close");
     },
   },
   computed: {
-    ...mapStores(useCommand),
-    ...mapState(useCommand, ["postCommand"]),
-    ...mapState(useCommand, ["idCommand"]),
+    ...mapStores(useClient),
+    ...mapState(useClient, ["postClient"]),
+    ...mapState(useClient, ["idClient"]),
   },
 };
 </script>

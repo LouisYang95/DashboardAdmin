@@ -1,6 +1,8 @@
 <template>
+  <br />
 
-  <br>
+  <div class="container">
+    
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,23 +13,19 @@
         <th scope="col">Orders</th>
       </tr>
     </thead>
-    <tbody
-      v-for="client in elements"
-      :key="client.id"
-      @dblclick="this.mainStore.delete(element, client.id)"
-    >
+    <tbody v-for="client in elements" :key="client.id">
       <!-- there our function to delete product is activate on double click -->
       <tr>
         <th scope="row">
           {{ client.id }}
         </th>
-        <td>{{ client.firstname }} </td>
+        <td>{{ client.firstname }}</td>
         <td>{{ client.lastname }}</td>
         <td>
           {{ client.email }}
         </td>
         <td>
-          {{client.orders}}
+          {{ client.orders }}
         </td>
         <td>
           <button
@@ -44,17 +42,30 @@
             @close="this.modalStore.showModal()"
           />
         </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            @click="this.mainStore.delete(element, client.id)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <router-link exact to="/clients/add" class="btn btn-outline-success">
+    <strong class="text">Add client</strong>
+  </router-link>
+</div>
 </template>
 
 <script>
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
 import { useClient } from "@/store/useClient";
-import UseClientModal from "./modalComponent/ClientModal.vue";
 import { useModal } from "@/store/useModal.js";
+import { useProduct } from "@/store/index.js";
+import UseClientModal from "./modalComponent/ClientModal.vue";
 export default {
   name: "ClientDashboard",
   components: {
@@ -78,8 +89,10 @@ export default {
     ...mapStores(useClient),
     ...mapState(useClient, ["postClient"]),
     ...mapState(useClient, ["idClient"]),
+
+    ...mapStores(useProduct),
     // create a computed property which returns the id given + store -> there modalStore
-    ...mapStores(useModal), 
+    ...mapStores(useModal),
     // create a computed named 'isModalVisible' containing the state : state.isModalVisible in users.js store
     ...mapState(useModal, ["isModalVisible"]),
   },
@@ -88,7 +101,7 @@ export default {
 
 <style>
 .table.table-striped {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -99,7 +112,8 @@ export default {
   padding: 100px;
   margin: 20px;
 }
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
+
 </style>

@@ -1,85 +1,85 @@
 <template>
   <br />
   <!-- board -->
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stock</th>
+          <th scope="col">#</th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody v-for="product in elements" :key="product.id">
+        <!-- there our function to delete product is activate on double click -->
+        <tr>
+          <th scope="row">
+            {{ product.id }}
+          </th>
+          <td>{{ product.name }}</td>
+          <td>
+            {{ product.description }}
+          </td>
+          <td>{{ product.price }} euro</td>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Stock</th>
-        <th scope="col">#</th>
-        <th scope="col">#</th>
-      </tr>
-    </thead>
-    <tbody v-for="product in elements" :key="product.id">
-      <!-- there our function to delete product is activate on double click -->
-      <tr>
-        <th scope="row">
-          {{ product.id }}
-        </th>
-        <td>{{ product.name }}</td>
-        <td>
-          {{ product.description }}
-        </td>
-        <td>{{ product.price }} euro</td>
+          <td>
+            <p v-if="product.stock === 10">
+              Quantité maximale {{ product.stock }}
+            </p>
+            <p v-else-if="product.stock >= 5">
+              presque stock {{ product.stock }}
+            </p>
+            <p v-else>Hors stock {{ product.stock }}</p>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-primary"
+              @click="
+                this.modalStore.showModal();
+                this.mainStore.selectProduct(product.id);
+              "
+            >
+              Edit
+            </button>
+            <UseProductModal
+              v-show="isModalVisible"
+              @close="this.modalStore.showModal()"
+            />
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-danger"
+              @click="this.mainStore.delete(element, product.id)"
+            >
+              Delete
+            </button>
+          </td>
 
-        <td>
-          <p v-if="product.stock === 10">
-            Quantité maximale {{ product.stock }}
-          </p>
-          <p v-else-if="product.stock >= 5">
-            presque stock {{ product.stock }}
-          </p>
-          <p v-else>Hors stock {{ product.stock }}</p>
-        </td>
-        <td>
-          <button
-            class="btn btn-outline-primary"
-            @click="
-              this.modalStore.showModal();
-              this.mainStore.selectProduct(product.id);
-            "
-          >
-            Edit
-          </button>
-          <UseProductModal
-            v-show="isModalVisible"
-            @close="this.modalStore.showModal()"
-          />
-        </td>
-        <td>
-          <button
-            class="btn btn-outline-danger"
-            @click="this.mainStore.delete(element, product.id)"
-          >
-            Delete
-          </button>
-        </td>
-        <td>
-          <button>
-            <router-link exact to="/products/add" class="btn btn-outline-success">
-              <strong class="text">Add Products</strong>
-            </router-link>
-          </button>
-        </td>
-        <td>
-          <input
-            type="checkbox"
-            @click="this.mainStore.selectProduct(product.id)"
-          />
-          <button
-            @click="this.mainStore.addToCart(product.id)"
-            class="btn btn-outline-secondary"
-          >
-            add to cart
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <td>
+            <input
+              type="checkbox"
+              @click="this.mainStore.selectProduct(product.id)"
+            />
+            <button
+              @click="this.mainStore.addToCart(product.id)"
+              class="btn btn-outline-secondary"
+            >
+              add to cart
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <td>
+      <router-link exact to="/products/add" class="btn btn-outline-success">
+        <strong class="text">Add Products</strong>
+      </router-link>
+    </td>
+  </div>
 </template>
 
 <script>

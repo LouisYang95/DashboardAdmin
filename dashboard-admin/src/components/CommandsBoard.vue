@@ -12,11 +12,7 @@
         <th scope="col">Client</th>
       </tr>
     </thead>
-    <tbody
-      v-for="order in elements"
-      :key="order.id"
-      @dblclick="this.mainStore.delete(element, order.id)"
-    >
+    <tbody v-for="order in elements" :key="order.id">
       <!-- there our function to delete product is activate on double click -->
       <tr>
         <th scope="row">
@@ -51,6 +47,14 @@
             v-show="isModalVisible"
             @close="this.modalStore.showModal()"
           />
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            @click="this.mainStore.delete(element, order.id)"
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
@@ -95,7 +99,7 @@ export default {
 
 <style>
 .table.table-striped {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }

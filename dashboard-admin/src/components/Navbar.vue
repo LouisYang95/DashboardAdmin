@@ -12,12 +12,6 @@
         </router-link>
       </li >
       <li class="nav-item">
-        <router-link exact to="/products/add" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          <strong class="text">Add Products</strong>
-        </router-link>
-      </li>
-      <li class="nav-item">
         <router-link exact to="/commands" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           <strong class="text">Commands Board</strong>

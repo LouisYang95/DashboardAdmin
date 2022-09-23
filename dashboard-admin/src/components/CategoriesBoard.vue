@@ -39,6 +39,14 @@
             @close="this.modalStore.showModal()"
           />
         </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            @click="this.mainStore.delete(element, category.id)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -47,7 +55,7 @@
 <script>
 import { useStore } from "@/store/useElement";
 import { mapStores, mapState } from "pinia";
-
+import {useProduct} from "@/store/index.js";
 import { useModal } from "@/store/useModal.js";
 import { useCategory } from "@/store/useCategories.js";
 import UseCategoryModal from './modalComponent/CategoryModal.vue'
@@ -70,7 +78,7 @@ export default {
     ...mapStores(useStore),
     // create a computed named 'products' containing the state : state.products in users.js store
     ...mapState(useStore, ["elements"]),
-
+    ...mapStores(useProduct),
     // create a computed property which returns the id given + store -> there modalStore
     ...mapStores(useModal),
     // create a computed named 'isModalVisible' containing the state : state.isModalVisible in users.js store
@@ -84,7 +92,7 @@ export default {
 
 <style>
 .table.table-striped {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }

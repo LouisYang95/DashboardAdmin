@@ -1,8 +1,9 @@
 import ProductsBoard from '../components/ProductsBoard.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
+import FormAddClient from '../components/forms/FormAddClient.vue'
 import CommandsBoard from '../components/CommandsBoard.vue'
-import FormAddProduct from '../components/Forms/FormAddProduct.vue'
+import FormAddProduct from '../components/forms/FormAddProduct.vue'
 import ClientBoard from '../components/ClientBoard.vue'
 import CategoriesBoard from '../components/CategoriesBoard.vue'
 
@@ -29,6 +30,12 @@ const routes = [
         path: '/clients',
         component: ClientBoard
     },
+    {
+        name:'formulaireClients',
+        path: '/clients/add',
+        component: FormAddClient
+    },
+
     {
         name: 'categoriesBoard',
         path: '/categories',
